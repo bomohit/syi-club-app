@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "58984798257",
+    "project_id": "msu-club",
+    "storage_bucket": "msu-club.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:58984798257:android:76f711151acda34ac35d10",
+        "android_client_info": {
+          "package_name": "com.example.clubapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "58984798257-gukd0k4t16c9nbrdbtauhm0qq4ms6hve.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6sqeaIr7zPqGDQM5ReD3aLSp5-FbTdF4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "58984798257-gukd0k4t16c9nbrdbtauhm0qq4ms6hve.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
