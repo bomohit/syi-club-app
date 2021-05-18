@@ -24,6 +24,9 @@ class SignUpActivity : AppCompatActivity() {
         val buttonRegister: Button = findViewById(R.id.buttonSignin)
         val username: TextView = findViewById(R.id.si_username)
         val password: TextView = findViewById(R.id.si_password)
+        val fname = findViewById<TextView>(R.id.re_fullName)
+        val email = findViewById<TextView>(R.id.re_Email)
+        val matrixId = findViewById<TextView>(R.id.re_matrixId)
         val lay: ConstraintLayout = findViewById(R.id.layoutsignup)
         buttonRegister.setOnClickListener {
             val v = it
@@ -33,7 +36,10 @@ class SignUpActivity : AppCompatActivity() {
                 // Submit register profile to db
                 val data = hashMapOf(
                     "username" to username.text.toString(),
-                    "password" to password.text.toString()
+                    "password" to password.text.toString(),
+                    "full name" to fname.text.toString(),
+                    "email" to email.text.toString(),
+                    "matrixId" to matrixId.text.toString()
                 )
 
                 db.collection("user").document(username.text.toString())
@@ -58,6 +64,9 @@ class SignUpActivity : AppCompatActivity() {
         val username = findViewById<TextView>(R.id.si_username)
         val password = findViewById<TextView>(R.id.si_password)
         val confirmPassword = findViewById<TextView>(R.id.re_confirmPassword)
+        val fname = findViewById<TextView>(R.id.re_fullName)
+        val email = findViewById<TextView>(R.id.re_Email)
+        val matrixId = findViewById<TextView>(R.id.re_matrixId)
 
         if (username.text.toString().isEmpty()) {
             username.error = "enter username"
@@ -85,6 +94,27 @@ class SignUpActivity : AppCompatActivity() {
             } else {
                 confirmPassword.error = null
             }
+        }
+
+        if (fname.text.toString().isEmpty()) {
+            fname.error = "enter full name"
+            valid = false
+        } else {
+            fname.error = null
+        }
+
+        if (email.text.toString().isEmpty()) {
+            email.error = "enter email"
+            valid = false
+        } else {
+            email.error = null
+        }
+
+        if (matrixId.text.toString().isEmpty()) {
+            matrixId.error = "enter matrix id"
+            valid = false
+        } else {
+            matrixId.error = null
         }
 
         return valid
