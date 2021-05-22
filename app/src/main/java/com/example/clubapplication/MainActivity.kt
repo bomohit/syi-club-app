@@ -25,8 +25,8 @@ class MainActivity : AppCompatActivity() {
 
         username = intent.getStringExtra("username").toString()
         var viewModel = ViewModelProvider(this).get(loginViewModel::class.java)
-        viewModel.id = "admin"
-        username = "admin"
+        viewModel.id = "bomohit"
+        username = "bomohit"
 //        viewModel.id = username
 
         if (viewModel.id == "admin") {
@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
             // Passing each menu ID as a set of Ids because each
             // menu should be considered as top level destinations.
             appBarConfiguration = AppBarConfiguration(setOf(
-                R.id.nav_admin_home), drawerLayout)
+                R.id.nav_admin_home, R.id.nav_admin_news), drawerLayout)
             setupActionBarWithNavController(navController, appBarConfiguration)
             navView.setupWithNavController(navController)
         }
