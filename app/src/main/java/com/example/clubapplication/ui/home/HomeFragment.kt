@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.clubapplication.R
+import com.example.clubapplication.viewmodel.loginViewModel
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.getField
 import com.google.firebase.ktx.Firebase
@@ -29,6 +30,8 @@ class HomeFragment : Fragment() {
                 ViewModelProvider(this).get(HomeViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_home, container, false)
         val listClub = mutableListOf<ListClub>()
+        // get current user username
+        var viewModel = ViewModelProvider(requireActivity()).get(loginViewModel::class.java)
 
         val recyclerView : RecyclerView = root.findViewById(R.id.clubListRecyclerView)
         val textView: TextView = root.findViewById(R.id.text_home)
@@ -48,8 +51,9 @@ class HomeFragment : Fragment() {
             .addOnSuccessListener { result ->
                 for (results in result) {
                     val title = results.getField<String>("title").toString()
-                    d("bomoh", title )
-                    listClub.add(ListClub(title))
+                    val club_id = results.id
+                    d("bomoh", title + club_id)
+                    listClub.add(ListClub(title, club_id))
                 }
                 rv()
             }
@@ -59,5 +63,6 @@ class HomeFragment : Fragment() {
 }
 
 data class ListClub (
-    val name : String
+    val name : String,
+    val club_id : String
 )
