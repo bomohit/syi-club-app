@@ -43,4 +43,9 @@
         android:name="com.example.clubapplication.nav_payment"
         android:label="fragment_nav_payment"
         tools:layout="@layout/fragment_nav_payment" />
+    <fragment
+        android:id="@+id/nav_logout"
+        android:name="com.example.clubapplication.LogoutFragment"
+        android:label="fragment_logout"
+        tools:layout="@layout/fragment_logout" />
 </navigation>

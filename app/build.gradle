@@ -60,4 +60,7 @@ dependencies {
 
     // Storage Firebase
     implementation 'com.google.firebase:firebase-storage-ktx'
+
+    // Picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
 }

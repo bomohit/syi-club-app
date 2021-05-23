@@ -1,7 +1,10 @@
 package com.example.clubapplication
 
 import android.os.Bundle
+import android.util.Log.d
 import android.view.Menu
+import android.view.MenuItem
+import android.widget.TextView
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -56,7 +59,7 @@ class MainActivity : AppCompatActivity() {
             // Passing each menu ID as a set of Ids because each
             // menu should be considered as top level destinations.
             appBarConfiguration = AppBarConfiguration(setOf(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow), drawerLayout)
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.nav_logout), drawerLayout)
             setupActionBarWithNavController(navController, appBarConfiguration)
             navView.setupWithNavController(navController)
         }
@@ -75,7 +78,9 @@ class MainActivity : AppCompatActivity() {
         } else {
             findNavController(R.id.nav_host_fragment)
         }
+        findViewById<TextView>(R.id.nav_name).text = username
 
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
+
 }

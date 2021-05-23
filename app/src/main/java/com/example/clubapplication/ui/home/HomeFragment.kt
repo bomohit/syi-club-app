@@ -34,10 +34,6 @@ class HomeFragment : Fragment() {
         var viewModel = ViewModelProvider(requireActivity()).get(loginViewModel::class.java)
 
         val recyclerView : RecyclerView = root.findViewById(R.id.clubListRecyclerView)
-        val textView: TextView = root.findViewById(R.id.text_home)
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
 
         fun rv() {
             recyclerView.apply {

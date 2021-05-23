@@ -4,10 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.clubapplication.R
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.getField
@@ -29,25 +32,28 @@ class GalleryFragment : Fragment() {
 //        galleryViewModel.text.observe(viewLifecycleOwner, Observer {
 //            textView.text = it
 //        })
-        val post = root.findViewById<TextView>(R.id.vn_post)
-        val image = root.findViewById<TextView>(R.id.vn_image)
-        val club_name = root.findViewById<TextView>(R.id.vn_clubName)
+        val postList = mutableListOf<PostList>()
 
-        db.collection("post")
+        val recyclerView : RecyclerView = root.findViewById(R.id.vn_recyclerView)
+        fun rv() {
+            recyclerView.apply {
+                layoutManager = LinearLayoutManager(this@GalleryFragment.context)
+                adapter = PostNews(postList)
+            }
+        }
+
+
+        db.collection("posts")
             .get()
             .addOnSuccessListener { results ->
                 for (result in results) {
                     val db_post = result.getField<String>("post").toString()
-                    val db_image = result.getField<String>("image")
+                    val db_image = result.getField<String>("image").toString()
                     val db_club_name = result.getField<String>("club name").toString()
-                    post.text = db_post
-                    club_name.text = db_club_name
-
-                    if (!db_image.isNullOrEmpty()) {
-                        // show image
-                    }
+                    postList.add(PostList(db_club_name, db_image, db_post))
 
                 }
+                rv()
             }
 
 
@@ -58,3 +64,9 @@ class GalleryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
     }
 }
+
+data class PostList (
+    val club : String,
+    val image : String,
+    val post : String
+)

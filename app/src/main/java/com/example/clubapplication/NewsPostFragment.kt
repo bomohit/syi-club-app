@@ -96,6 +96,14 @@ class NewsPostFragment : Fragment(), AdapterView.OnItemSelectedListener {
                             .set(data)
                         Snackbar.make(requireView(), "Post Success", Snackbar.LENGTH_SHORT).show()
                     }
+                } else {
+                    val data = hashMapOf(
+                        "post" to post.text.toString(),
+                        "club name" to sel_name
+                    )
+                    db.collection("posts").document(tms)
+                        .set(data)
+                    Snackbar.make(requireView(), "Post Success", Snackbar.LENGTH_SHORT).show()
                 }
             }
         }
@@ -106,8 +114,8 @@ class NewsPostFragment : Fragment(), AdapterView.OnItemSelectedListener {
         if (post.toString().isEmpty()) {
             post.error = "Required"
             valid = false
-        } else {
             Snackbar.make(requireView(), "Please Enter Post", Snackbar.LENGTH_SHORT).show()
+        } else {
             post.error = null
         }
 
