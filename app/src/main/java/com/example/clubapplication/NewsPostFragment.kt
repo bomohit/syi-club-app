@@ -37,6 +37,9 @@ class NewsPostFragment : Fragment(), AdapterView.OnItemSelectedListener {
         val root = inflater.inflate(R.layout.fragment_news_post, container, false)
         val club_list: MutableList<String> = ArrayList()
         val spinner : Spinner = root.findViewById(R.id.spinnerSelectClub)
+        val lay: FrameLayout = root.findViewById(R.id.nw_layout)
+
+        lay.setOnClickListener { closeKeyBoard(it) }
 
         spinner.onItemSelectedListener = this
         club_list.add("Select Club ..")

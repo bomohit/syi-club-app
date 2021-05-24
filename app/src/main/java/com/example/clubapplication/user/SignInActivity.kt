@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.clubapplication.MainActivity
 import com.example.clubapplication.R
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.getField
 import com.google.firebase.ktx.Firebase
@@ -28,7 +29,7 @@ class SignInActivity : AppCompatActivity(){
         val si_register: TextView = findViewById(R.id.si_register)
         val lay: ConstraintLayout = findViewById(R.id.layoutsignin)
 
-        buttonSignin.setOnClickListener {
+        buttonSignin.setOnClickListener { v ->
             Log.d("bomoh", "signin pressed")
             if (valid()) {
                 db.collection("user").document(username.text.toString())
@@ -44,8 +45,11 @@ class SignInActivity : AppCompatActivity(){
                                 intent.putExtra("username", username.text.toString())
                                 startActivity(intent)
                                 finish()
+                            } else {
+                                Snackbar.make(v, "Wrong Password or Username", Snackbar.LENGTH_SHORT).show()
                             }
                         }
+                        Snackbar.make(v, "Wrong Password or Username", Snackbar.LENGTH_SHORT).show()
                     }
             }
         }

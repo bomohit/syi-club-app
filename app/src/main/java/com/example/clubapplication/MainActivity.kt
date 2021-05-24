@@ -5,6 +5,7 @@ import android.util.Log.d
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView
+import android.widget.Toast
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -28,9 +29,9 @@ class MainActivity : AppCompatActivity() {
 
         username = intent.getStringExtra("username").toString()
         var viewModel = ViewModelProvider(this).get(loginViewModel::class.java)
-        viewModel.id = "bomohit"
-        username = "bomohit"
-//        viewModel.id = username
+//        viewModel.id = "admin"
+//        username = "admin"
+        viewModel.id = username
 
         if (viewModel.id == "admin") {
             setContentView(R.layout.admin_activity_main)
@@ -48,7 +49,7 @@ class MainActivity : AppCompatActivity() {
             // Passing each menu ID as a set of Ids because each
             // menu should be considered as top level destinations.
             appBarConfiguration = AppBarConfiguration(setOf(
-                R.id.nav_admin_home, R.id.nav_admin_news), drawerLayout)
+                R.id.nav_admin_home, R.id.nav_admin_news, R.id.nav_logout), drawerLayout)
             setupActionBarWithNavController(navController, appBarConfiguration)
             navView.setupWithNavController(navController)
         }
@@ -63,6 +64,7 @@ class MainActivity : AppCompatActivity() {
             setupActionBarWithNavController(navController, appBarConfiguration)
             navView.setupWithNavController(navController)
         }
+        Toast.makeText(applicationContext, "Welcome, $username", Toast.LENGTH_SHORT).show()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

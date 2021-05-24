@@ -29,8 +29,8 @@
     <fragment
         android:id="@+id/nav_club_details"
         android:name="com.example.clubapplication.ui.home.DetailsFragment"
-        android:label="fragment_nav_club_details"
-        tools:layout="@layout/fragment_nav_club_details" >
+        android:label="Details"
+        tools:layout="@layout/fragment_nav_club_details">
         <argument
             android:name="club_id"
             app:argType="string" />

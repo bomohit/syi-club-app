@@ -7,8 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -32,6 +34,7 @@ class DetailsFragment : Fragment() {
         val club_id = arguments?.getString("club_id").toString()
         val joinButton = root.findViewById<Button>(R.id.cd_requestJoin)
         val joinPop : ConstraintLayout = root.findViewById(R.id.joinBarLayout)
+        val cd_loading : ConstraintLayout = root.findViewById(R.id.cd_loadingLayout)
         // get current user username
         var viewModel = ViewModelProvider(requireActivity()).get(loginViewModel::class.java)
 
@@ -76,6 +79,7 @@ class DetailsFragment : Fragment() {
                     joinButton.isEnabled = false
                     joinButton.text = "Waiting Approval"
                 }
+                cd_loading.isGone = true
             }
 
         return root
