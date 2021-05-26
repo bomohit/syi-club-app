@@ -15,4 +15,10 @@
         android:name="com.example.clubapplication.NewsPostFragment"
         android:label="@string/menu_post"
         tools:layout="@layout/fragment_news_post" />
+
+    <fragment
+        android:id="@+id/nav_logout"
+        android:name="com.example.clubapplication.LogoutFragment"
+        android:label="fragment_logout"
+        tools:layout="@layout/fragment_logout" />
 </navigation>

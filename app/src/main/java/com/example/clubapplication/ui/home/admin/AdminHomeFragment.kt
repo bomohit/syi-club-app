@@ -34,6 +34,9 @@ class AdminHomeFragment : Fragment() {
 
         // get request list from db
         fun getData() {
+            d("bomoh", "get data")
+            listRequest.clear()
+            rv()
             db.collection("request")
                 .get()
                 .addOnSuccessListener { results ->
@@ -63,8 +66,8 @@ class AdminHomeFragment : Fragment() {
                 return@addSnapshotListener
             }
             if (snapshot != null) {
-                listRequest.clear()
                 getData()
+                d("bomoh", "data changed")
             }
         }
 

@@ -75,7 +75,7 @@ class DetailsFragment : Fragment() {
             .addOnSuccessListener {
                 val title = it.getField<String>("club_id").toString()
                 val uid = it.id
-                if (uid == viewModel.id.toString()) {
+                if (uid == viewModel.id.toString() && title == club_id) {
                     joinButton.isEnabled = false
                     joinButton.text = "Waiting Approval"
                 }
