@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.clubapplication.R
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
@@ -36,6 +37,7 @@ class RequestList(private val listRequest: MutableList<ListRequest>) :
 
         holder.btn_approve.setOnClickListener {
             d("bomoh", "approve pressed")
+            Snackbar.make(it, "Request Approved", Snackbar.LENGTH_SHORT).show()
             // add to user
             val data = hashMapOf(
                 "title" to loc.title
@@ -48,6 +50,7 @@ class RequestList(private val listRequest: MutableList<ListRequest>) :
         }
         holder.btn_reject.setOnClickListener {
             d("bomoh", "reject pressed")
+            Snackbar.make(it, "Request Rejected", Snackbar.LENGTH_SHORT).show()
             // remove from request
             db.collection("request").document(loc.uid)
                 .delete()

@@ -8,15 +8,11 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/edit_text_background"
-        android:backgroundTint="#155EDD"
-        app:layout_constraintBottom_toTopOf="@+id/buttonSignin"
+        android:background="#F23E32"
+        android:backgroundTint="#F23E32"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -107,16 +103,16 @@
         android:id="@+id/buttonSignin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="42dp"
-        android:backgroundTint="#FB0B3B"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#F9A28E"
         android:fontFamily="sans-serif-condensed"
         android:padding="10dp"
         android:text="SIGN IN"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="@+id/si_password"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/constraintLayout" />
+        app:layout_constraintStart_toStartOf="@+id/si_password"
+        app:layout_constraintTop_toBottomOf="@+id/si_register" />
 
     <TextView
         android:id="@+id/si_register"
