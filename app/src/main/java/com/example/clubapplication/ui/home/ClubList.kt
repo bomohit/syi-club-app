@@ -30,7 +30,6 @@ class ClubList(private val listClub: MutableList<ListClub>) : RecyclerView.Adapt
             val bundle = bundleOf("club_id" to loc.club_id)
             it.findNavController().navigate(R.id.action_nav_home_to_nav_club_details, bundle)
         }
-
     }
 
     override fun getItemCount(): Int {
