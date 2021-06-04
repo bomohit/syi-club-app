@@ -56,11 +56,15 @@ class nav_payment : Fragment() {
         db.collection("request").document(userid)
             .get()
             .addOnSuccessListener {
-                val img = it.getField<String>("image").toString()
-                pay.isEnabled = img.isNullOrEmpty()
-                if (pay.isEnabled) {
+                val img = it.getField<String>("image")
+                if (img.isNullOrEmpty()) {
+                    pay.isEnabled = true
+
+                } else {
+                    pay.isEnabled = false
                     pay.text = "Payment Submitted"
                 }
+
             }
 
         return root
