@@ -43,6 +43,7 @@ class AdminHomeFragment : Fragment() {
                     for (result in results) {
                         val uid = result.id
                         val club_id = result.getField<String>("club_id").toString()
+                        val img = result.getField<String>("image").toString()
                         db.collection("list club").document(club_id)
                             .get()
                             .addOnSuccessListener {
@@ -52,7 +53,7 @@ class AdminHomeFragment : Fragment() {
                                     .addOnSuccessListener { t ->
                                         val name = t.getField<String>("full name").toString()
                                         val matrix = t.getField<String>("matrixId").toString()
-                                        listRequest.add(ListRequest(name, club_name, matrix, club_id, uid))
+                                        listRequest.add(ListRequest(name, club_name, matrix, club_id, uid, img))
                                         rv()
                                     }
                             }
@@ -80,5 +81,6 @@ data class ListRequest (
     val title : String,
     val matrix : String,
     val club_id : String,
-    val uid: String
+    val uid: String,
+    val image: String
 )

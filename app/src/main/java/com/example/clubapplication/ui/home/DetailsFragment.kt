@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.os.bundleOf
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
@@ -47,12 +48,18 @@ class DetailsFragment : Fragment() {
             }
         // when button join pressed
         joinButton.setOnClickListener {
-            val data = hashMapOf(
-                "club_id" to club_id
-            )
-            db.collection("request").document(viewModel.id.toString())
-                .set(data)
-            it.findNavController().navigate(R.id.action_nav_club_details_to_nav_payment2)
+            if (joinButton.text.toString() == "Waiting Approval") {
+                val bundle = bundleOf("club_id" to club_id)
+                it.findNavController().navigate(R.id.action_nav_club_details_to_nav_payment2, bundle)
+            } else {
+                val data = hashMapOf(
+                    "club_id" to club_id
+                )
+                db.collection("request").document(viewModel.id.toString())
+                    .set(data)
+                val bundle = bundleOf("club_id" to club_id)
+                it.findNavController().navigate(R.id.action_nav_club_details_to_nav_payment2, bundle)
+            }
         }
 
         // check if user already join or not
@@ -76,7 +83,7 @@ class DetailsFragment : Fragment() {
                 val title = it.getField<String>("club_id").toString()
                 val uid = it.id
                 if (uid == viewModel.id.toString() && title == club_id) {
-                    joinButton.isEnabled = false
+//                    joinButton.isEnabled = false
                     joinButton.text = "Waiting Approval"
                 }
                 cd_loading.isGone = true

@@ -5,11 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.clubapplication.R
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.squareup.picasso.Picasso
 
 class RequestList(private val listRequest: MutableList<ListRequest>) :
     RecyclerView.Adapter<RequestList.ViewHolder>() {
@@ -19,6 +21,7 @@ class RequestList(private val listRequest: MutableList<ListRequest>) :
         val club: TextView = itemView.findViewById(R.id.rq_club)
         val btn_approve : Button = itemView.findViewById(R.id.rq_approve)
         val btn_reject : Button = itemView.findViewById(R.id.rq_reject)
+        val image : ImageView = itemView.findViewById(R.id.imageView3)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -49,6 +52,9 @@ class RequestList(private val listRequest: MutableList<ListRequest>) :
             db.collection("request").document(loc.uid)
                 .delete()
         }
+
+        Picasso.get().load(loc.image).into(holder.image)
+        d("bomoh", "image : ${loc.image}")
     }
 
     override fun getItemCount(): Int {

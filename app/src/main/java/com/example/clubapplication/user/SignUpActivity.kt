@@ -27,6 +27,7 @@ class SignUpActivity : AppCompatActivity() {
         val fname = findViewById<TextView>(R.id.re_fullName)
         val email = findViewById<TextView>(R.id.re_Email)
         val matrixId = findViewById<TextView>(R.id.re_matrixId)
+        val phoneNo = findViewById<TextView>(R.id.re_phone)
         val lay: ConstraintLayout = findViewById(R.id.layoutsignup)
         buttonRegister.setOnClickListener {
             val v = it
@@ -39,14 +40,15 @@ class SignUpActivity : AppCompatActivity() {
                     "password" to password.text.toString(),
                     "full name" to fname.text.toString(),
                     "email" to email.text.toString(),
-                    "matrixId" to matrixId.text.toString()
+                    "matrixId" to matrixId.text.toString(),
+                    "phone no" to phoneNo.text.toString()
                 )
 
                 db.collection("user").document(username.text.toString())
                     .set(data)
                     .addOnSuccessListener {
                         Log.d("bomoh", "Register Complete")
-                        Toast.makeText(applicationContext, "Register Complete", Toast.LENGTH_SHORT)
+                        Toast.makeText(applicationContext, "Register Complete", Toast.LENGTH_SHORT).show()
                         onBackPressed()
                     }
                     .addOnFailureListener { e ->
@@ -67,6 +69,7 @@ class SignUpActivity : AppCompatActivity() {
         val fname = findViewById<TextView>(R.id.re_fullName)
         val email = findViewById<TextView>(R.id.re_Email)
         val matrixId = findViewById<TextView>(R.id.re_matrixId)
+        val phoneNo = findViewById<TextView>(R.id.re_phone)
 
         if (username.text.toString().isEmpty()) {
             username.error = "enter username"
@@ -79,6 +82,10 @@ class SignUpActivity : AppCompatActivity() {
             password.error = "enter password"
             valid = false
         } else {
+            if (password.text.toString().length < 5) {
+                password.error = "password must be more than 5"
+                valid = false
+            }
             password.error = null
         }
 
@@ -114,7 +121,24 @@ class SignUpActivity : AppCompatActivity() {
             matrixId.error = "enter matrix id"
             valid = false
         } else {
-            matrixId.error = null
+            if (matrixId.text.toString().length < 12) {
+                matrixId.error = "enter valid matrix id"
+                valid = false
+            } else {
+                matrixId.error = null
+            }
+        }
+
+        if (phoneNo.text.toString().isEmpty()) {
+            phoneNo.error = "enter phone no"
+            valid = false
+        } else {
+            if (phoneNo.text.toString().length < 10) {
+                phoneNo.error = "enter valid phone no"
+                valid = false
+            } else {
+                phoneNo.error = null
+            }
         }
 
         return valid
