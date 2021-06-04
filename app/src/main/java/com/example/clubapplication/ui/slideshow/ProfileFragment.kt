@@ -33,7 +33,7 @@ class ProfileFragment : Fragment() {
             .get()
             .addOnSuccessListener {
                 fname.text = it.getField<String>("full name").toString()
-                phone.text = it.getField<String>("phone number").toString()
+                phone.text = it.getField<String>("phone no").toString()
                 email.text = it.getField<String>("email").toString()
                 matrix.text = it.getField<String>("matrixId").toString()
             }
